@@ -1,0 +1,22 @@
+.red{
+    color:red;
+}
+
+.strong{
+     font-weight:  bold;
+}
+
+.img-heroes{
+    width: 150px;
+    height: 100px;
+    border-radius: 15px;
+}
+
+.article-style{
+    margin: 5px;
+    background-color:darkgray;
+}
+
+.link-menu{
+    color:green
+}

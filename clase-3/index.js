@@ -70,3 +70,4 @@ const edadHumano = (edadPerro) => {
   return edadHumano;
 };
 console.log(edadHumano(5));
+console.log(nombre);
