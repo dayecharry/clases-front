@@ -1,0 +1,12 @@
+img{
+    width: 100px;
+}
+.characters{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.article{
+    background-color: darkgray;
+    border-radius: 5px;
+}

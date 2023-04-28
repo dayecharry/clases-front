@@ -39,6 +39,7 @@ function renderTasks() {
     const input = document.createElement('input');
     input.setAttribute('type', 'checkbox');
     input.setAttribute('id', task.id);
+    //este clase me permitira seleccionar los checkbox para escuchar eventos sobre ellos
     input.classList.add('itemTask');
     li.appendChild(input);
 
@@ -46,7 +47,7 @@ function renderTasks() {
     label.textContent = task.name;
     li.appendChild(label);
 
-    // en cado que la propiedad completed de una tarea sea true, se añade una clase de css al li, y al input checked tru
+    // en caso que la propiedad completed de una tarea sea true, se añade una clase de css al li, y al input checked tru
     if (task.completed) {
       li.classList.add('completed');
       input.checked = true;
@@ -99,3 +100,6 @@ function handleClick(ev) {
 
 // cuando ocurra un click sobre el boton ejecuto la funcion handleClick
 btn.addEventListener('click', handleClick);
+
+//añadir un proceso de buscar
+//formulario con un boton, al clickar en boton debo filtrar en el array de tasks, las que incluyan en el nombre el texto que ha escrito el usuario en el input, y volver a renderizar solo las tareas que  incluyan el  texto que ha escrito el usuario
