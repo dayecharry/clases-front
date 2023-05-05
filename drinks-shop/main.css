@@ -1,0 +1,16 @@
+.list{
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px
+}
+.article{
+    border: 1px solid purple;
+    border-radius: 10px;
+}
+.article img{
+    width: 150px;
+}
+.article h3{
+    width: 150px;
+}
