@@ -23,6 +23,8 @@ let allDrinks = [];
 let sectionElement = document.querySelector('.list');
 const drinkSearch = document.querySelector('.drinkSearch');
 const drinkBtnSearch = document.querySelector('.drinkBtnSearch');
+const cestaHTML = document.querySelector('.cesta');
+const comprar = document.querySelector('.comprar');
 let cesta = [];
 
 const handlerSearch = (ev) => {
@@ -55,13 +57,39 @@ const mapeoArray = (array) => {
   });
 };
 const hanlderSuma = (ev) => {
-  console.log(ev.target.parentNode.id);
-  //añadir al array de la cestas
   //renderizar el html
-
-  //compra cesta=[] -> render
+  const idDrink = ev.target.parentNode.id;
+  const findDrink = allDrinks.find((e) => idDrink === e.id);
+  const findElement = cesta.findIndex((e) => idDrink === e.id);
+  if (findElement === -1) {
+    findDrink.cantidad = 1;
+    cesta.push(findDrink);
+  } else {
+    cesta[findElement].cantidad += 1;
+  }
+  renderCesta();
 };
 
+const hanlderResta = (ev) => {
+  const id = ev.target.parentNode.id;
+  const positionELement = cesta.findIndex((e) => e.id === id);
+  if (positionELement !== -1) {
+    if (cesta[positionELement].cantidad === 1) {
+      cesta.splice(positionELement, 1);
+    } else {
+      cesta[positionELement].cantidad -= 1;
+      //cesta[positionELement].cantidad = cesta[positionELement].cantidad - 1;
+    }
+    renderCesta();
+  }
+};
+
+function renderCesta() {
+  cestaHTML.innerHTML = '';
+  for (const element of cesta) {
+    cestaHTML.innerHTML += `<li> Bebida: ${element.name}, Cantidad: ${element.cantidad} </li>`;
+  }
+}
 const renderDrinks = (allDrinks) => {
   sectionElement.innerHTML = '';
   for (const drink of allDrinks) {
@@ -79,6 +107,10 @@ const renderDrinks = (allDrinks) => {
   for (const suma of allBtnSuma) {
     suma.addEventListener('click', hanlderSuma);
   }
+  const allResta = document.querySelectorAll('.resta');
+  for (const resta of allResta) {
+    resta.addEventListener('click', hanlderResta);
+  }
 };
 
 const main = async () => {
@@ -87,3 +119,16 @@ const main = async () => {
 };
 
 main();
+
+function handlerCompra() {
+  cestaHTML.innerHTML = '';
+  const factura = document.querySelector('.factura');
+  for (const element of cesta) {
+    factura.innerHTML += `<span> Bebida: ${element.name}, Cantidad: ${element.cantidad}</span>`;
+  }
+  const cantidadTotal = cesta.reduce((acum, drink) => acum + drink.cantidad, 0);
+  factura.innerHTML += `<h3> La cantidad de bebidas comprada es  ${cantidadTotal} </h3>`;
+  cesta = [];
+}
+
+comprar.addEventListener('click', handlerCompra);
